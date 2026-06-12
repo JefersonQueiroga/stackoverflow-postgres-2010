@@ -13,7 +13,7 @@ importado do [Stack Exchange Data Dump](https://archive.org/details/stackexchang
 ```bash
 # 1. Clonar o projeto
 sudo mkdir -p /opt/stackoverflow-db && sudo chown $USER /opt/stackoverflow-db
-git clone https://github.com/SEU-USUARIO/stackoverflow-postgres-2010.git /opt/stackoverflow-db
+git clone https://github.com/JefersonQueiroga/stackoverflow-postgres-2010.git /opt/stackoverflow-db
 cd /opt/stackoverflow-db
 
 # 2. Configurar senhas
