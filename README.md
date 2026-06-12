@@ -20,10 +20,10 @@ cd /opt/stackoverflow-db
 cp .env.example .env
 nano .env   # trocar POSTGRES_PASSWORD e ALUNO_PASSWORD
 
-# 3. Baixar o dump (fica em ./dump/, fora do git)
+# 3. Transferir o dump para ./dump/ (fora do git)
+# Via SFTP (Termius) ou, do Windows, via scp:
+#   scp dump-stackoverflow2010-202408101013.sql usuario@IP-DA-VPS:/opt/stackoverflow-db/dump/
 mkdir -p dump
-wget -O dump/dump-stackoverflow2010-202408101013.sql \
-  "URL-DO-DUMP"
 
 # 4. Subir o PostgreSQL
 docker compose up -d
