@@ -32,8 +32,13 @@ SQL
 
 echo "==> Criando banco stackoverflow (se não existir)..."
 docker compose exec -T postgres psql -U postgres -tAc \
-  "SELECT 1 FROM pg_database WHERE datname = 'stackoverflow'" | grep -q 1 || \
+  "SELECT 1 FROM pg_database WHERE datname = 'stackoverflow'" | grep -q 1 || {
   docker compose exec -T postgres createdb -U postgres -O esse stackoverflow
+  # O dump traz seu próprio CREATE SCHEMA public; remover o default evita
+  # "schema public already exists" com --exit-on-error
+  docker compose exec -T postgres psql -U postgres -d stackoverflow \
+    -v ON_ERROR_STOP=1 -c "DROP SCHEMA IF EXISTS public CASCADE"
+}
 
 echo "==> Restaurando o dump (pode levar vários minutos)..."
 docker compose exec -T postgres pg_restore -U postgres -d stackoverflow \
