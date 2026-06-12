@@ -1,0 +1,7 @@
+# Dump do banco (1,5 GB — baixar direto na VPS, nunca versionar)
+*.sql.dump
+dump-stackoverflow2010-*.sql
+dump/
+
+# Segredos
+.env
